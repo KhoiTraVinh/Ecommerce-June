@@ -2,7 +2,7 @@ import Axios from 'axios'
 import { THEM_HANG_VAO, XOA_HANG, LUU_THONGTIN_GIAOHANG, LUU_PHUONGTHUC_THANHTOAN } from '../constants/GioHangConstants'
 
 export const GioHangActions = (sanphamid, sl) => async (dispatch, getState) => {
-    const {data} = await Axios.get(`/api/sanpham/${sanphamid}`);
+    const {data} = await Axios.get(`https://servertmdt.herokuapp.com/api/sanpham/${sanphamid}`);
     dispatch({
         type: THEM_HANG_VAO,
         payload: {

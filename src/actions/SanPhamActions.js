@@ -6,7 +6,7 @@ export const DanhSachSanPhams = () => async (dispatch) => {
         type: SANPHAM_DANHSACH_REQUEST
     });
     try{
-        const {data} = await Axios.get('/api/sanpham')
+        const {data} = await Axios.get('https://servertmdt.herokuapp.com/api/sanpham')
         dispatch({ type: SANPHAM_DANHSACH_THANHCONG, payload: data});
     }catch(e){
         dispatch({ type: SANPHAM_DANHSACH_THATBAI, payload: e.message });
@@ -19,7 +19,7 @@ export const ChiTietSanPhams = (sanphamid) => async (dispatch) => {
         payload: sanphamid
     });
     try{
-        const {data} = await Axios.get(`/api/sanpham/${sanphamid}`);
+        const {data} = await Axios.get(`https://servertmdt.herokuapp.com/api/sanpham/${sanphamid}`);
         dispatch({ type: SANPHAM_CHITIET_THANHCONG, payload: data});
     }catch(e){
         dispatch({
@@ -39,7 +39,7 @@ export const TaoSanPham = () => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = await Axios.post(
-      '/api/sanpham',
+      'https://servertmdt.herokuapp.com/api/sanpham',
       {},
       {
         headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
@@ -63,7 +63,7 @@ export const CapNhatSanPham = (sanpham) => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = await Axios.put(`/api/sanpham/${sanpham._id}`, sanpham, {
+    const { data } = await Axios.put(`https://servertmdt.herokuapp.com/api/sanpham/${sanpham._id}`, sanpham, {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: CAPNHAT_SANPHAM_THANHCONG, payload: data });
@@ -82,7 +82,7 @@ export const XoaSanPham = (sanphamId) => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = Axios.delete(`/api/sanpham/${sanphamId}`, {
+    const { data } = Axios.delete(`https://servertmdt.herokuapp.com/api/sanpham/${sanphamId}`, {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: XOA_SANPHAM_THANHCONG, payload: data });
@@ -105,7 +105,7 @@ export const TaoReView = (sanphamId, review) => async (
   } = getState();
   try {
     const { data } = await Axios.post(
-      `/api/sanpham/${sanphamId}/reviews`,
+      `https://servertmdt.herokuapp.com/api/sanpham/${sanphamId}/reviews`,
       review,
       {
         headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },

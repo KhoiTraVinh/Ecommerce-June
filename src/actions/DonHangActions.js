@@ -8,7 +8,7 @@ export const TaoDonHang = (donhang)  => async (dispatch, getState) => {
         const {
             DangNhap: {ThongTinKhachHang},
         } = getState();
-        const {data} = await Axios.post('/api/donhangs', donhang, {
+        const {data} = await Axios.post('https://servertmdt.herokuapp.com/api/donhangs', donhang, {
             headers: {
                 Authorization: `Bearer ${ThongTinKhachHang.token}`,
             },
@@ -33,7 +33,7 @@ export const ChiTietsDonHang = (donhangId) => async (dispatch, getState) => {
         DangNhap: {ThongTinKhachHang},
     } = getState();
     try{
-        const {data} = await Axios.get(`/api/donhangs/${donhangId}`, {
+        const {data} = await Axios.get(`https://servertmdt.herokuapp.com/api/donhangs/${donhangId}`, {
             headers: {Authorization: `Bearer ${ThongTinKhachHang.token}`},
         });
         dispatch({type: CHITIET_DONHANG_THANHCONG, payload:data});
@@ -52,7 +52,7 @@ export const ThanhToanDonHang = (donhang, paymentResult) => async (dispatch, get
         DangNhap: {ThongTinKhachHang},
     } = getState();
     try{
-        const {data} = Axios.put(`/api/donhangs/${donhang._id}/pay`, paymentResult, {
+        const {data} = Axios.put(`https://servertmdt.herokuapp.com/api/donhangs/${donhang._id}/pay`, paymentResult, {
             headers: {Authorization: `Bearer ${ThongTinKhachHang.token}`},
         });
         dispatch({type: THANHTOAN_DONHANG_THANHCONG, payload: data});
@@ -70,7 +70,7 @@ export const DanhSachDonHangne = () => async (dispatch, getState) => {
         DangNhap: {ThongTinKhachHang},
     } = getState();
     try{
-        const {data} = await Axios.get('/api/donhangs/mine', {
+        const {data} = await Axios.get('https://servertmdt.herokuapp.com/api/donhangs/mine', {
             headers: {Authorization: `Bearer ${ThongTinKhachHang.token}`},
         });
         dispatch({type: DANHSACH_DONHANG_THANHCONG, payload: data});
@@ -88,7 +88,7 @@ export const DanhSachDonHangAdminNe = () => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = await Axios.get('/api/donhangs', {
+    const { data } = await Axios.get('https://servertmdt.herokuapp.com/api/donhangs', {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: DANHSACH_DONHANG_ADMIN_THANHCONG, payload: data });
@@ -107,7 +107,7 @@ export const XoaDonHang = (donhangId) => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = Axios.delete(`/api/donhangs/${donhangId}`, {
+    const { data } = Axios.delete(`https://servertmdt.herokuapp.com/api/donhangs/${donhangId}`, {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: XOA_DONHANG_THANHCONG, payload: data });
@@ -127,7 +127,7 @@ export const GiaoHang = (donhangId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `/api/donhangs/${donhangId}/giaohang`,
+      `https://servertmdt.herokuapp.com/api/donhangs/${donhangId}/giaohang`,
       {},
       {
         headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
@@ -149,7 +149,7 @@ export const ThongKeDonHang = () => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = await Axios.get('/api/donhangs/thongke', {
+    const { data } = await Axios.get('https://servertmdt.herokuapp.com/api/donhangs/thongke', {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: THONGKE_DONHANG_THANHCONG, payload: data });

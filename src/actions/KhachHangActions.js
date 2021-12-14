@@ -28,7 +28,7 @@ import {
 export const DangNhap = (email, password) => async (dispatch) => {
     dispatch({ type: KHACHHANG_DANGNHAP_REQUEST, payload: {email, password}});
     try{
-        const {data} = await Axios.post('/api/users/dangnhap', {email, password});
+        const {data} = await Axios.post('https://servertmdt.herokuapp.com/api/users/dangnhap', {email, password});
         dispatch({ type: KHACHHANG_DANGNHAP_THANHCONG, payload: data});
         localStorage.setItem('ThongTinKhachHang', JSON.stringify(data));
     }catch(e){
@@ -45,7 +45,7 @@ export const DangNhap = (email, password) => async (dispatch) => {
 export const DangKi = (name, email, password) => async (dispatch) => {
     dispatch({ type: KHACHHANG_DANGKI_REQUEST, payload: {email, password}});
     try{
-        const {data} = await Axios.post('/api/users/dangki', {name, email, password});
+        const {data} = await Axios.post('https://servertmdt.herokuapp.com/api/users/dangki', {name, email, password});
         dispatch({ type: KHACHHANG_DANGKI_THANHCONG, payload: data});
         dispatch({ type: KHACHHANG_DANGNHAP_THANHCONG, payload: data});
         localStorage.setItem('ThongTinKhachHang', JSON.stringify(data));
@@ -74,7 +74,7 @@ export const ChiTietNguoiDung = (userId) => async (dispatch, getState) => {
         DangNhap: {ThongTinKhachHang},
     } = getState();
     try{
-        const {data} = await Axios.get(`/api/users/${userId}`, {
+        const {data} = await Axios.get(`https://servertmdt.herokuapp.com/api/users/${userId}`, {
             headers: {Authorization: `Bearer ${ThongTinKhachHang?.token}`},
         });
         dispatch({type: KHACHHANG_THONGTIN_THANHCONG, payload: data});
@@ -92,7 +92,7 @@ export const Capnhattaikhoanne = (user) => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = await Axios.put(`/api/users/${user._id}`, user, {
+    const { data } = await Axios.put(`https://servertmdt.herokuapp.com/api/users/${user._id}`, user, {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: CAPNHAT_TAIKHOAN_THANHCONG, payload: data });
@@ -111,7 +111,7 @@ export const Capnhatthongtin = (user) => async (dispatch, getState) => {
         DangNhap: {ThongTinKhachHang},
     } = getState();
     try{
-        const {data} = await Axios.put('/api/users/profile', user,{
+        const {data} = await Axios.put('https://servertmdt.herokuapp.com/api/users/profile', user,{
             headers: {Authorization: `Bearer ${ThongTinKhachHang.token}`},
         });
         dispatch({type: KHACHHANG_CAPNHAT_THONGTIN_THANHCONG, payload: data});
@@ -131,7 +131,7 @@ export const DanhSachTaiKhoan = () => async (dispatch, getState) => {
     const {
       DangNhap: { ThongTinKhachHang },
     } = getState();
-    const { data } = await Axios.get('/api/users', {
+    const { data } = await Axios.get('https://servertmdt.herokuapp.com/api/users', {
       headers: {
         Authorization: `Bearer ${ThongTinKhachHang.token}`,
       },
@@ -152,7 +152,7 @@ export const XoaTaiKhoan = (userId) => async (dispatch, getState) => {
     DangNhap: { ThongTinKhachHang },
   } = getState();
   try {
-    const { data } = await Axios.delete(`/api/users/${userId}`, {
+    const { data } = await Axios.delete(`https://servertmdt.herokuapp.com/api/users/${userId}`, {
       headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` },
     });
     dispatch({ type: XOA_TAIKHOAN_THANHCONG, payload: data });

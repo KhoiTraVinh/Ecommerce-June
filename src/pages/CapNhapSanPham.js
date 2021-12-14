@@ -68,7 +68,7 @@ export default function CapNhatSanPhamTrang(props) {
     bodyFormData.append('hinhanh', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { data } = await Axios.post('https://servertmdt.herokuapp.com/api/uploads', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${ThongTinKhachHang.token}`,
