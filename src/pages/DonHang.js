@@ -6,15 +6,7 @@ import {Link} from 'react-router-dom';
 import {TaoDonHang} from '../actions/DonHangActions';
 import MessageBox from '../components/MessageBox'
 import LoadingBox from '../components/LoadingBox'
-import styled from 'styled-components'
 
-const Select = styled.select`
-    padding: 10px;
-    margin-right: 20px;
-    font-weight: bolder;
-`
-const Option = styled.option`
-`
 
 export default function DonHang(props) {
     const giohang = useSelector((state) => state.GioHang);
@@ -117,19 +109,19 @@ export default function DonHang(props) {
                             <li>
                                 <div className="row">
                                     <div>Voucher</div>
-                                    <Select>
-                                        <Option selected>
+                                    <select>
+                                        <option selected>
                                             Chọn voucher
-                                        </Option>
-                                        <Option>Voucher1</Option>
-                                        <Option>Voucher2</Option>
-                                        <Option>Voucher3</Option>
-                                    </Select>
+                                        </option>
+                                        <option>Voucher1</option>
+                                        <option>Voucher2</option>
+                                        <option>Voucher3</option>
+                                    </select>
                                 </div>
                             </li>
                             <li>
                                 <div className="row">
-                                    <div>Giá trị voucher: </div>
+                                    <div>Giá trị voucher</div>
                                     <div>20%</div>
                                 </div>
                             </li>
