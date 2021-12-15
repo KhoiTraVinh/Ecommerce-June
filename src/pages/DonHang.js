@@ -28,6 +28,7 @@ export default function DonHang(props) {
     giohang.shippingPrice = giohang.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     giohang.taxPrice = toPrice(0.1*giohang.itemsPrice);
     giohang.totalPrice = (giohang.itemsPrice + giohang.shippingPrice + giohang.taxPrice)*voucher.giamgia;
+    const giatrivoucher=(giohang.itemsPrice + giohang.shippingPrice + giohang.taxPrice)*(1-voucher.giamgia)
     const dispatch = useDispatch();
     const TraTienne=() => {
         dispatch(TaoDonHang({ ...giohang, ChiTietDonHang: giohang.ChiTietDonHang}))
@@ -130,7 +131,7 @@ export default function DonHang(props) {
                             <li>
                                 <div className="row">
                                     <div>Giá trị voucher</div>
-                                    <div>20%</div>
+                                    <div>${giatrivoucher.toFixed(2)}   </div>
                                 </div>
                             </li>
                             <li>

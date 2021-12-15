@@ -24,6 +24,7 @@ import TraCuu from './pages/TraCuu'
 import DoanhThu from './pages/DoanhThu'
 import CapNhatTaiKhoan from './pages/CapNhatTaiKhoan'
 import DanhSachVoucher from './pages/DanhsachVoucher'
+import CapNhatVoucher from './pages/CapNhapVoucher';
 function App() {
     const giohang = useSelector((state) => state.GioHang);
     const {ChiTietDonHang} = giohang;
@@ -92,6 +93,7 @@ function App() {
               <Route path="/chitietdonhang/:id" component={ChiTietDonHangne}></Route>
               <Route path="/danhsachdonhang" component={DanhSachDonHang}></Route>
               <Route path="/sanpham/:id/sua" component={CapNhatSanPhamTrang} exact></Route>
+              <Route path="/voucher/:id/sua" component={CapNhatVoucher} exact></Route>
               <Route path="/search/name/:name?" component={TraCuu} exact></Route>
               <RouteBiMat path="/thongtinnguoidung" component={ThongTinNguoiDung}></RouteBiMat>
               <RouteAdmin path="/danhsachsanpham" component={DanhSachSanPham}></RouteAdmin>
