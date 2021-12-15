@@ -34,8 +34,8 @@ export default function DanhSachVoucher(props) {
             url, 
             voucher,
             {headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` }})
-        .then(res=>console.log(res))
-        // dispatch(TaoSanPham());
+        .then(res=>{console.log(res);
+        props.history.push(`/voucher/${res.data._id}/sua`);})
     };
     return (
         <div>
