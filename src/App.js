@@ -23,6 +23,7 @@ import TimKiem from './components/ThanhTimKiem'
 import TraCuu from './pages/TraCuu'
 import DoanhThu from './pages/DoanhThu'
 import CapNhatTaiKhoan from './pages/CapNhatTaiKhoan'
+import DanhSachVoucher from './pages/DanhsachVoucher'
 function App() {
     const giohang = useSelector((state) => state.GioHang);
     const {ChiTietDonHang} = giohang;
@@ -72,6 +73,9 @@ function App() {
                                 <li>
                                     <Link to="/taikhoan">TaiKhoan</Link>
                                 </li>
+                                <li>
+                                    <Link to="/voucher">Voucher</Link>
+                                </li>
                             </ul>
                           </div>
                       )}    
@@ -95,6 +99,7 @@ function App() {
               <RouteAdmin path="/taikhoan" component={TaiKhoan}></RouteAdmin>
               <RouteAdmin path="/taikhoan/:id/sua" component={CapNhatTaiKhoan}></RouteAdmin>
               <RouteAdmin path="/thongke" component={DoanhThu}></RouteAdmin>
+              <RouteAdmin path="/voucher" component={DanhSachVoucher}></RouteAdmin>
               <Route path="/" component={TrangChu} exact></Route>
               </main>
               <footer className="row center">
