@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {TAYTRANG_DONHANG} from '../constants/DonHangConstants'
 import CheckOut from '../components/CheckOut'
 import {useDispatch, useSelector} from 'react-redux';
@@ -6,9 +6,14 @@ import {Link} from 'react-router-dom';
 import {TaoDonHang} from '../actions/DonHangActions';
 import MessageBox from '../components/MessageBox'
 import LoadingBox from '../components/LoadingBox'
+import axios from '../../node_modules/axios/index';
 
 
 export default function DonHang(props) {
+    const [vouchers,setVouchers]=useState([]);
+    const [voucher,setVoucher]=useState({
+        giamgia:1,
+    });
     const giohang = useSelector((state) => state.GioHang);
     if(!giohang.PhuongThucThanhToan)
     {
@@ -22,17 +27,23 @@ export default function DonHang(props) {
     );
     giohang.shippingPrice = giohang.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     giohang.taxPrice = toPrice(0.1*giohang.itemsPrice);
-    giohang.totalPrice = giohang.itemsPrice + giohang.shippingPrice + giohang.taxPrice;
+    giohang.totalPrice = (giohang.itemsPrice + giohang.shippingPrice + giohang.taxPrice)*voucher.giamgia;
     const dispatch = useDispatch();
     const TraTienne=() => {
         dispatch(TaoDonHang({ ...giohang, ChiTietDonHang: giohang.ChiTietDonHang}))
     }
+    const getVouchers = async ()=>{
+        await axios.get('http://servertmdt.herokuapp.com/api/vouchers/available')
+        .then(res=>setVouchers(res.data))
+    }
     useEffect(() => {
+        console.log(voucher)
+        getVouchers();
         if(success) {
             props.history.push(`/chitietdonhang/${donhang._id}`);
             dispatch({type: TAYTRANG_DONHANG});
         }
-    },[dispatch, donhang, props.history, success])
+    },[dispatch, donhang, props.history, success, voucher])
     return (
         <div>
             <CheckOut step1 step2 step3 step4></CheckOut>
@@ -109,13 +120,10 @@ export default function DonHang(props) {
                             <li>
                                 <div className="row">
                                     <div>Voucher</div>
-                                    <select>
-                                        <option selected>
-                                            Chọn voucher
-                                        </option>
-                                        <option>Voucher1</option>
-                                        <option>Voucher2</option>
-                                        <option>Voucher3</option>
+                                    <select onChange={(e)=>setVoucher(vouchers[e.target.value])}>
+                                        {vouchers.map((item,index)=>(
+                                            <option key={index} value={index}>{item.mota}</option>
+                                        ))}
                                     </select>
                                 </div>
                             </li>
