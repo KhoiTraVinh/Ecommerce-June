@@ -25,6 +25,7 @@ import DoanhThu from './pages/DoanhThu'
 import CapNhatTaiKhoan from './pages/CapNhatTaiKhoan'
 import DanhSachVoucher from './pages/DanhsachVoucher'
 import CapNhatVoucher from './pages/CapNhapVoucher';
+import KhoHang from './pages/KhoHang';
 function App() {
     const giohang = useSelector((state) => state.GioHang);
     const {ChiTietDonHang} = giohang;
@@ -102,6 +103,7 @@ function App() {
               <RouteAdmin path="/taikhoan/:id/sua" component={CapNhatTaiKhoan}></RouteAdmin>
               <RouteAdmin path="/thongke" component={DoanhThu}></RouteAdmin>
               <RouteAdmin path="/voucher" component={DanhSachVoucher}></RouteAdmin>
+              <RouteAdmin path="/khohang" component={KhoHang}></RouteAdmin>
               <Route path="/" component={TrangChu} exact></Route>
               </main>
               <footer className="row center">
