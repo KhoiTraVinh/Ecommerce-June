@@ -57,7 +57,8 @@ export default function CapNhatVoucher(props) {
 
     Axios.put(url+voucherID,voucher,{headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` }})
     .then(res=>{
-      console.log(res.data)
+      console.log(res.data);
+      props.history.push('/voucher');
     })
     .catch(err=>console.log(err))
     // dispatch(
