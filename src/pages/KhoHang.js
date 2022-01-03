@@ -12,7 +12,7 @@ export default function KhoHang(props) {
     const dangnhap = useSelector((state) => state.DangNhap);
     const { ThongTinKhachHang } = dangnhap;
     const fetchAPI= async ()=>{
-        Axios.get(url)
+        Axios.get(url, {headers: { Authorization: `Bearer ${ThongTinKhachHang.token}` }})
         .then(res=>{
             setKhoHangs(res.data)
         })
