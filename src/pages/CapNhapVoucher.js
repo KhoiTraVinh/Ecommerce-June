@@ -5,6 +5,9 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { CAPNHAT_SANPHAM_TAYTRANG } from '../constants/SanPhamConstants';
 import Axios from 'axios';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 export default function CapNhatVoucher(props) {
   const url='https://servertmdt.herokuapp.com/api/vouchers/'
@@ -162,23 +165,25 @@ export default function CapNhatVoucher(props) {
             </div>
             <div>
               <label htmlFor="brand">Ngày bắt đầu</label>
-              <input
+              {/* <input
                 id="brand"
                 type="text"
                 placeholder="Mời nhập ngày bắt đầu"
                 value={ngaybatdau}
                 onChange={(e) => setNgayBatDau(e.target.value)}
-              ></input>
+              ></input> */}
+              <DatePicker selected={ngaybatdau} onChange={(date)=>setNgayBatDau(date)}/>
             </div>
             <div>
               <label htmlFor="countInStock">Ngày kết thúc</label>
-              <input
+              {/* <input
                 id="countInStock"
-                type="text"
+                type="datetime"
                 placeholder="Mời nhập ngày kết thúc voucher"
                 value={ngayketthuc}
                 onChange={(e) => setNgayKetThuc(e.target.value)}
-              ></input>
+              ></input> */}
+              <DatePicker selected={ngayketthuc} onChange={(date)=>setNgayKetThuc(date)}/>
             </div>
             {/* <div>
               <label htmlFor="description">Mo Ta</label>
