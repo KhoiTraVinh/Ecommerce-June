@@ -59,22 +59,24 @@ export default function CapNhatSanPhamTrang(props) {
   };
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState('');
-
   const dangnhap = useSelector((state) => state.DangNhap);
   const { ThongTinKhachHang } = dangnhap;
   const thaydoihinhne = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
     bodyFormData.append('hinhanh', file);
+    bodyFormData.append('id', sanphamId);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('https://servertmdt.herokuapp.com/api/uploads', bodyFormData, {
+      await Axios.post('https://servertmdt.herokuapp.com/api/uploads', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${ThongTinKhachHang.token}`,
         },
-      });
-      setImage(data);
+      }).then(res=>{
+        console.log(res.data);
+        setImage(res.data.secure_url);
+      })
       setLoadingUpload(false);
     } catch (error) {
       setErrorUpload(error.message);

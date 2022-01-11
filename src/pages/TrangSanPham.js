@@ -189,7 +189,7 @@ export default function TrangSanPham(props) {
                             </form>
                             ) : (
                             <MessageBox>
-                                Vui Long <Link to="/DangNhap">Dang Nhap</Link> de view 1 review
+                                Vui Long <Link to="/DangNhap">Dang Nhap</Link> de thay review
                             </MessageBox>
                             )}
                         </li>
